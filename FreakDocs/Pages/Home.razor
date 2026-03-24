@@ -1,0 +1,1645 @@
+﻿@page "/"
+
+@inject IJSRuntime JSRuntime; 
+@inject NavigationManager navigationManager
+<PageTitle>Freak - Docs</PageTitle>
+@*  <div style="position: fixed; width: 5rem; height: fit-content; left:0; top: 0;" class="glass">
+     <button @onclick="() => {SideBar = !SideBar;}" ><?xml version="1.0" encoding="UTF-8"?><svg width="20px" height="20px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 5H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+     </div>
+ *@
+   
+@*        <button @onclick="() => {SideBar = !SideBar;}" ><?xml version="1.0" encoding="UTF-8"?><svg width="20px" height="20px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M3 5H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button> 
+ *@
+
+ @if (SideBar)
+{ <div style="position: fixed; width: 20rem; height: 100%; overflow-y: scroll; left:0; top: 0;" class="glass">
+     <button @onclick="() => {SideBar = !SideBar;}" style="width: 2rem; " ><?xml version="1.0" encoding="UTF-8"?><svg width="20px" height="20px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 5H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+    <section>
+        <a href="#Section1">Section 1: Syntax</a>
+        <section style="flex-flow: column; flex-direction:column; display: flex;">
+            <a href="#11variables">1.1 Variables</a>
+            <a href="#12functions">1.2 Functions</a>
+            <a href="#13types">1.3 Types — Primitive</a>
+            <a href="#14compound">1.4 Types — Compound</a>
+            <a href="#15shapes">1.5 Shapes (Structs)</a>
+            <a href="#16doctrines">1.6 Doctrines (Traits)</a>
+            <a href="#17control">1.7 Control Flow</a>
+            <a href="#18closures">1.8 Closures and Lambdas</a>
+            <a href="#19pipe">1.9 Pipe Operator</a>
+            <a href="#110error">1.10 Error Handling</a>
+            <a href="#111generics">1.11 Generics</a>
+            <a href="#112borrow">1.12 Borrowing and Ownership</a>
+            <a href="#113modules">1.13 Modules and Imports</a>
+        </section>
+        </section>
+    <section>
+        <a href="#Section2">Section 2: Advanced Type System</a>
+        <section style="flex-flow: column; flex-direction:column; display: flex;">
+            <a href="#21power">2.1 power&lt;N&gt; — Compile-Time Capability</a>
+            <a href="#22prob">2.2 prob[lo..hi] — Probability Distribution</a>
+            <a href="#23causality">2.3 causality&lt;T&gt; — Cross-Timeline Broadcast</a>
+            <a href="#24mood">2.4 Mood Type</a>
+        </section>
+    </section>
+    <section>
+        <a href="#Section3">Section 3: Concurrency</a>
+        <section style="flex-flow: column; flex-direction:column; display: flex;">
+            <a href="#31xm3">3.1 XM3 — Parallel Racing</a>
+            <a href="#32squadron">3.2 Squadron Model</a>
+        </section>
+    </section>
+    <section>
+        <a href="#Section4">Section 4: Borrow Checker</a>
+        <section style="flex-flow: column; flex-direction:column; display: flex;">
+            <a href="#41ownership">4.1 Ownership Rules</a>
+            <a href="#42borrows">4.2 Borrow Rules</a>
+            <a href="#43lifetimes">4.3 Lifetimes</a>
+            <a href="#44trustme">4.4 trust-me Escape Hatch</a>
+        </section>
+    </section>
+    <section>
+        <a href="#Section5">Section 5: Anime Layer</a>
+        <section style="flex-flow: column; flex-direction:column; display: flex;">
+            <a href="#51annotations">5.1 Annotations</a>
+            <a href="#52foreshadow">5.2 Foreshadowing System</a>
+            <a href="#53route">5.3 Route System</a>
+            <a href="#54operators">5.4 Operator System</a>
+            <a href="#55deus">5.5 deus_ex_machina Block</a>
+            <a href="#56training">5.6 Training Arc Loop</a>
+            <a href="#57isekai">5.7 Isekai and Eventually</a>
+        </section>
+    </section>
+    <section>
+        
+        <section style="flex-flow: column; flex-direction:column; display: flex;">
+            <a href="#Section6">Section 6: Module System &amp; Hangar</a>
+            <a href="#Section7">Section 7: Standard Library</a>
+            <a href="#Section8">Section 8: Lexer Specification</a>
+            <a href="#Section9">Section 9: Parser — AST Nodes</a>
+            <a href="#Section10">Section 10: Type Checker</a>
+            <a href="#Section11">Section 11: Code Generation</a>
+            <a href="#Section12">Section 12: Build Modes</a>
+            <a href="#Section13">Section 13: Compiler CLI</a>
+            <a href="#Section14">Section 14: Error Voice Cast</a>
+            <a href="#Section15">Section 15: Syntax Cheatsheet</a>
+        </section>
+    </section>
+    </div>
+  
+    
+     
+    }
+else
+{
+     <div style="position: fixed; width: 2rem; height: fit-content; left:0; top: 0;" >
+     <button @onclick="() => {SideBar = !SideBar;}" style="width: 2rem;" ><?xml version="1.0" encoding="UTF-8"?><svg width="20px" height="20px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#ffffff"><path d="M3 5H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 12H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M3 19H21" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+      
+       
+   
+     </div>
+   
+}
+
+
+
+<main>
+<div class="navbar" style="display: flex; height: 10rem;">
+<img style="height: inherit; margin-left: 0.5rem;" src="Media/Banner2.png" />
+     <div style="  display: flex; justify-content: center; align-items: center;">
+    <a href="https://freak-nine.vercel.app/">Back to Freak - Home</a>
+       </div>
+  
+</div>
+<hr />
+    <section id="Section1">
+<h1>SECTION 1: SYNTAX — COMPLETE REFERENCE</h1>
+
+<section id="11variables">
+<h3>1.1 Variables</h3>
+<pre class="fkcode"><code><span class="kw">pilot</span> x = <span class="num">42</span>
+<span class="kw">pilot</span> name = <span class="str">"Takeru"</span>
+<span class="kw">pilot</span> active = <span class="kw">true</span>
+<span class="kw">pilot</span> ratio = <span class="num">3.14</span>
+<span class="kw">pilot</span> x: <span class="ty">int</span> = <span class="num">42</span>           <span class="cm">-- explicit type annotation</span>
+<span class="kw">pilot</span> x: <span class="ty">word</span> = <span class="str">"hello"</span></code></pre>
+<p>
+    - <strong>pilot</strong> is the variable keyword — you are assigning a pilot to a mission<br />
+    - Type annotation optional — inferred from value<br />
+    - Semicolons optional everywhere<br />
+    - Mutable by default<br />
+    - Immutable binding: <strong>fixed pilot x = 42</strong> — cannot be reassigned
+</p>
+</section>
+
+<section id="12functions">
+<h3>1.2 Functions</h3>
+<pre class="fkcode"><code><span class="kw">task</span> add(a: <span class="ty">num</span>, b: <span class="ty">num</span>) <span class="op">-></span> <span class="ty">num</span> {
+    <span class="kw">give back</span> a + b
+}
+
+<span class="kw">task</span> greet(name: <span class="ty">word</span>) <span class="op">-></span> <span class="ty">void</span> {
+    <span class="bi">say</span> <span class="str">"Hello, {name}!"</span>
+}
+
+<span class="cm">-- Arrow shorthand (single expression)</span>
+<span class="kw">task</span> square(x: <span class="ty">num</span>) <span class="op">=></span> x * x
+
+<span class="cm">-- done keyword closes blocks (identical to })</span>
+<span class="kw">task</span> cube(x: <span class="ty">num</span>) <span class="op">-></span> <span class="ty">num</span>
+    <span class="kw">give back</span> x * x * x
+<span class="kw">done</span>
+
+<span class="cm">-- Named parameters at call site</span>
+<span class="kw">task</span> connect(host: <span class="ty">word</span>, port: <span class="ty">int</span>, timeout: <span class="ty">int</span>) <span class="op">-></span> <span class="ty">result</span>&lt;Connection, <span class="ty">word</span>&gt;
+
+connect(host: <span class="str">"localhost"</span>, port: <span class="num">8080</span>, timeout: <span class="num">30</span>)</code></pre>
+<p>
+    - <strong>task</strong> — function keyword<br />
+    - <strong>give back</strong> — return keyword<br />
+    - <strong>say</strong> — print keyword (always available, no import)<br />
+    - String interpolation: <strong>{"{expr}"}</strong> inside double-quoted strings<br />
+    - <strong>{ }</strong> and <strong>done</strong> are identical block delimiters
+</p>
+</section>
+
+<section id="13types">
+<h3>1.3 Types — Primitive</h3>
+<table>
+    <tr><th>FREAK type</th><th>Notes</th></tr>
+    <tr><td>num</td><td>64-bit float. Default numeric type. Context-narrows to int.</td></tr>
+    <tr><td>int</td><td>64-bit signed integer</td></tr>
+    <tr><td>uint</td><td>64-bit unsigned integer</td></tr>
+    <tr><td>tiny</td><td>8-bit unsigned (single byte)</td></tr>
+    <tr><td>float</td><td>64-bit IEEE 754 double (explicit)</td></tr>
+    <tr><td>float32</td><td>32-bit IEEE 754 single</td></tr>
+    <tr><td>big</td><td>Arbitrary precision integer. Heap-allocated. Never overflows.</td></tr>
+    <tr><td>word</td><td>UTF-8 string. Fat pointer (data + byte_len + char_count).</td></tr>
+    <tr><td>bool</td><td>Boolean. true/false/yes/no/hai/iie all valid literals.</td></tr>
+    <tr><td>char</td><td>Unicode scalar value (32-bit codepoint)</td></tr>
+    <tr><td>void</td><td>Unit type. Absence of value.</td></tr>
+    <tr><td>[T; N]</td><td>Fixed-size array. Stack-allocated. Size known at compile time.</td></tr>
+    <tr><td>(A, B, ...)</td><td>Tuple. Heterogeneous fixed grouping.</td></tr>
+    <tr><td>*T</td><td>Raw pointer. Only inside trust-me blocks.</td></tr>
+    <tr><td>*mut T</td><td>Raw mutable pointer. Only inside trust-me blocks.</td></tr>
+</table>
+</section>
+
+<section id="14compound">
+<h3>1.4 Types — Compound</h3>
+<pre class="fkcode"><code><span class="ty">maybe</span>&lt;T&gt;           <span class="cm">-- optional value</span>
+<span class="kw">some</span>(<span class="num">42</span>)           <span class="cm">-- construct with value</span>
+<span class="kw">nobody</span>             <span class="cm">-- empty</span>
+
+<span class="ty">result</span>&lt;T, E&gt;       <span class="cm">-- success or failure</span>
+<span class="kw">ok</span>(<span class="num">42</span>)             <span class="cm">-- success</span>
+<span class="kw">err</span>(<span class="str">"message"</span>)     <span class="cm">-- failure</span>
+
+<span class="ty">List</span>&lt;T&gt;            <span class="cm">-- dynamic array</span>
+[<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>]          <span class="cm">-- literal</span>
+
+<span class="ty">Map</span>&lt;K, V&gt;          <span class="cm">-- hash map</span>
+{ <span class="str">"key"</span>: value }   <span class="cm">-- literal</span>
+
+<span class="ty">Set</span>&lt;T&gt;             <span class="cm">-- unique value collection</span>
+<span class="ty">Lineup</span>&lt;T&gt;          <span class="cm">-- FIFO queue</span>
+
+(A, B)             <span class="cm">-- tuple</span>
+(<span class="num">42</span>, <span class="str">"hello"</span>)      <span class="cm">-- literal</span></code></pre>
+</section>
+
+<section id="15shapes">
+<h3>1.5 Shapes (Structs)</h3>
+<pre class="fkcode"><code><span class="kw">shape</span> Point {
+    x: <span class="ty">num</span>
+    y: <span class="ty">num</span>
+}
+
+<span class="cm">-- Instantiate</span>
+<span class="kw">pilot</span> p = Point { x: <span class="num">3.0</span>, y: <span class="num">4.0</span> }
+
+<span class="cm">-- Methods via impl</span>
+<span class="kw">impl</span> Point {
+    <span class="kw">task</span> distance(self, other: Point) <span class="op">-></span> <span class="ty">num</span> {
+        <span class="kw">pilot</span> dx = self.x - other.x
+        <span class="kw">pilot</span> dy = self.y - other.y
+        <span class="kw">give back</span> (dx*dx + dy*dy).sqrt()
+    }
+}
+
+<span class="cm">-- Shapes with generic fields</span>
+<span class="kw">shape</span> Pair&lt;A, B&gt; { first: A, second: B }</code></pre>
+</section>
+
+<section id="16doctrines">
+<h3>1.6 Doctrines (Traits)</h3>
+<pre class="fkcode"><code><span class="kw">doctrine</span> Displayable {
+    <span class="kw">task</span> display(self) <span class="op">-></span> <span class="ty">word</span>
+}
+
+<span class="kw">impl</span> Displayable <span class="kw">for</span> Point {
+    <span class="kw">task</span> display(self) <span class="op">-></span> <span class="ty">word</span> {
+        <span class="kw">give back</span> <span class="str">"({self.x}, {self.y})"</span>
+    }
+}
+
+<span class="cm">-- Generic with doctrine bound</span>
+<span class="kw">task</span> print_it&lt;T: Displayable&gt;(val: T) {
+    <span class="bi">say</span> val.display()
+}
+
+<span class="cm">-- Multi-bound</span>
+<span class="kw">task</span> log_sorted&lt;T: Comparable + Displayable&gt;(items: <span class="ty">List</span>&lt;T&gt;) { ... }
+
+<span class="cm">-- Built-in operator doctrines</span>
+<span class="kw">doctrine</span> Add     { <span class="kw">task</span> add(self, other: Self) <span class="op">-></span> Self }
+<span class="kw">doctrine</span> Sub     { <span class="kw">task</span> sub(self, other: Self) <span class="op">-></span> Self }
+<span class="kw">doctrine</span> Mul     { <span class="kw">task</span> mul(self, other: Self) <span class="op">-></span> Self }
+<span class="kw">doctrine</span> Div     { <span class="kw">task</span> div(self, other: Self) <span class="op">-></span> Self }
+<span class="kw">doctrine</span> Neg     { <span class="kw">task</span> neg(self) <span class="op">-></span> Self }
+<span class="kw">doctrine</span> Eq      { <span class="kw">task</span> equals(self, other: Self) <span class="op">-></span> <span class="ty">bool</span> }
+<span class="kw">doctrine</span> Ord     { <span class="kw">task</span> compare(self, other: Self) <span class="op">-></span> Order }
+<span class="kw">doctrine</span> Index   { <span class="kw">task</span> index(self, i: <span class="ty">uint</span>) <span class="op">-></span> T }
+
+<span class="cm">-- Operator overloading: implement Add and + works</span>
+<span class="kw">impl</span> Add <span class="kw">for</span> Vector2 {
+    <span class="kw">task</span> add(self, other: Vector2) <span class="op">-></span> Vector2 {
+        <span class="kw">give back</span> Vector2 { x: self.x + other.x, y: self.y + other.y }
+    }
+}
+<span class="kw">pilot</span> v = v1 + v2   <span class="cm">-- calls freak_add_Vector2</span></code></pre>
+</section>
+
+<section id="17control">
+<h3>1.7 Control Flow</h3>
+<pre class="fkcode"><code><span class="cm">-- if/else</span>
+<span class="kw">if</span> x &gt; <span class="num">10</span> { <span class="bi">say</span> <span class="str">"big"</span> }
+<span class="kw">else if</span> x &gt; <span class="num">5</span> { <span class="bi">say</span> <span class="str">"medium"</span> }
+<span class="kw">else</span> { <span class="bi">say</span> <span class="str">"small"</span> }
+
+<span class="cm">-- when (pattern match)</span>
+<span class="kw">when</span> x {
+    <span class="num">1</span>    <span class="op">-></span> <span class="bi">say</span> <span class="str">"one"</span>
+    <span class="num">2</span>    <span class="op">-></span> <span class="bi">say</span> <span class="str">"two"</span>
+    _    <span class="op">-></span> <span class="bi">say</span> <span class="str">"other"</span>
+}
+
+<span class="cm">-- when with destructuring</span>
+<span class="kw">when</span> contact {
+    BETA::Soldier { position } <span class="op">-></span> engage_at(position)
+    BETA::BRAIN   { .. }       <span class="op">-></span> request_orbital_strike()
+    _                          <span class="op">-></span> <span class="bi">say</span> <span class="str">"unknown contact"</span>
+}
+
+<span class="cm">-- for each</span>
+<span class="kw">for each</span> item <span class="kw">in</span> my_list { <span class="bi">say</span> item }
+
+<span class="cm">-- for each with index</span>
+<span class="kw">for each</span> (i, item) <span class="kw">in</span> my_list.enumerate() { <span class="bi">say</span> <span class="str">"{i}: {item}"</span> }
+
+<span class="cm">-- repeat N times</span>
+<span class="kw">repeat</span> <span class="num">5</span> <span class="kw">times</span> { do_thing() }
+
+<span class="cm">-- repeat until</span>
+<span class="kw">repeat until</span> condition { do_thing() }
+
+<span class="cm">-- training arc: loop guaranteed to eventually terminate</span>
+<span class="kw">training arc</span> <span class="kw">until</span> power &gt;= <span class="num">9000</span> <span class="kw">max</span> <span class="num">100</span> <span class="kw">sessions</span> {
+    practice()
+    receive_trauma()
+}
+<span class="cm">-- compiles to while loop with iteration counter cap</span>
+
+<span class="cm">-- break and continue work inside all loops</span>
+<span class="kw">for each</span> item <span class="kw">in</span> list {
+    <span class="kw">if</span> item.skip { <span class="kw">continue</span> }
+    <span class="kw">if</span> item.fatal { <span class="kw">break</span> }
+    process(item)
+}</code></pre>
+</section>
+
+<section id="18closures">
+<h3>1.8 Closures and Lambdas</h3>
+<pre class="fkcode"><code><span class="cm">-- Arrow lambda</span>
+<span class="kw">pilot</span> double = |x: <span class="ty">num</span>| <span class="op">=></span> x * <span class="num">2</span>
+
+<span class="cm">-- Block lambda</span>
+<span class="kw">pilot</span> clamp = |x: <span class="ty">num</span>, lo: <span class="ty">num</span>, hi: <span class="ty">num</span>| {
+    <span class="kw">if</span> x &lt; lo { <span class="kw">give back</span> lo }
+    <span class="kw">if</span> x &gt; hi { <span class="kw">give back</span> hi }
+    <span class="kw">give back</span> x
+}
+
+<span class="cm">-- Capture modes</span>
+<span class="kw">pilot</span> threshold = <span class="num">100</span>
+
+<span class="cm">-- Default: borrow (immutable borrow of outer vars)</span>
+<span class="kw">pilot</span> check = |x| <span class="op">=></span> x &gt; threshold
+
+<span class="cm">-- copy: copy value into closure (safe across threads)</span>
+<span class="kw">pilot</span> check2 = <span class="kw">copy</span> |x| <span class="op">=></span> x &gt; threshold
+
+<span class="cm">-- move: closure takes ownership</span>
+<span class="kw">pilot</span> handler = <span class="kw">move</span> |x| { process(x) }
+
+<span class="cm">-- mut: closure mutates captured variable</span>
+<span class="kw">pilot</span> count = <span class="num">0</span>
+<span class="kw">pilot</span> counter = <span class="kw">mut</span> |_| { count += <span class="num">1</span> }
+
+<span class="cm">-- Closure doctrine types (auto-inferred, never written manually)</span>
+<span class="cm">-- Callable    — borrows captures, callable many times</span>
+<span class="cm">-- MutCallable — mutates captures, one active call at a time</span>
+<span class="cm">-- OneShot     — moves captures, callable exactly ONCE</span></code></pre>
+</section>
+
+<section id="19pipe">
+<h3>1.9 Pipe Operator</h3>
+<pre class="fkcode"><code><span class="kw">pilot</span> result = data
+    <span class="op">|></span> filter(|x| <span class="op">=></span> x &gt; <span class="num">0</span>)
+    <span class="op">|></span> map(|x| <span class="op">=></span> x * <span class="num">2</span>)
+    <span class="op">|></span> take(<span class="num">10</span>)
+    <span class="op">|></span> collect()</code></pre>
+</section>
+
+<section id="110error">
+<h3>1.10 Error Handling</h3>
+<pre class="fkcode"><code><span class="cm">-- ? propagates errors</span>
+<span class="kw">task</span> parse_and_double(s: <span class="ty">word</span>) <span class="op">-></span> <span class="ty">result</span>&lt;<span class="ty">int</span>, <span class="ty">word</span>&gt; {
+    <span class="kw">pilot</span> n = parse_int(s)<span class="op">?</span>
+    <span class="kw">give back</span> <span class="kw">ok</span>(n * <span class="num">2</span>)
+}
+
+<span class="cm">-- check (maybe)</span>
+<span class="kw">check</span> find_user(id) {
+    <span class="kw">got</span> u    <span class="op">-></span> <span class="bi">say</span> u.name
+    <span class="kw">nobody</span>   <span class="op">-></span> <span class="bi">say</span> <span class="str">"not found"</span>
+}
+
+<span class="cm">-- check result</span>
+<span class="kw">check</span> <span class="kw">result</span> parse_int(s) {
+    <span class="kw">ok</span>(n)    <span class="op">-></span> <span class="bi">say</span> <span class="str">"Got: {n}"</span>
+    <span class="kw">err</span>(msg) <span class="op">-></span> <span class="bi">say</span> <span class="str">"Error: {msg}"</span>
+}
+
+<span class="cm">-- or else: fallback</span>
+<span class="kw">pilot</span> n = parse_int(input) <span class="kw">or else</span> <span class="num">0</span></code></pre>
+</section>
+
+<section id="111generics">
+<h3>1.11 Generics</h3>
+<pre class="fkcode"><code><span class="kw">task</span> first&lt;T&gt;(list: <span class="ty">List</span>&lt;T&gt;) <span class="op">-></span> <span class="ty">maybe</span>&lt;T&gt; {
+    <span class="kw">if</span> list.empty() { <span class="kw">give back</span> <span class="kw">nobody</span> }
+    <span class="kw">give back</span> <span class="kw">some</span>(list[<span class="num">0</span>])
+}
+
+<span class="cm">-- Multi-bound</span>
+<span class="kw">task</span> log_sorted&lt;T: Comparable + Displayable&gt;(items: <span class="ty">List</span>&lt;T&gt;) { ... }
+
+<span class="cm">-- Generic shape</span>
+<span class="kw">shape</span> Pair&lt;A, B&gt; { first: A, second: B }</code></pre>
+</section>
+
+<section id="112borrow">
+<h3>1.12 Borrowing and Ownership</h3>
+<p>Full borrow rules — see Section 4.</p>
+<pre class="fkcode"><code><span class="cm">-- Immutable borrow</span>
+<span class="kw">task</span> print_name(<span class="kw">lend</span> p: Person) { <span class="bi">say</span> p.name }
+
+<span class="cm">-- Mutable borrow</span>
+<span class="kw">task</span> rename(<span class="kw">lend mut</span> p: Person, name: <span class="ty">word</span>) { p.name = name }
+
+<span class="cm">-- Ownership transfer (move)</span>
+<span class="kw">task</span> consume(p: Person) { ... }   <span class="cm">-- p is moved in, caller loses it</span>
+
+<span class="cm">-- Copy types (primitives): automatically copied, no move</span>
+<span class="kw">pilot</span> a = <span class="num">42</span>
+<span class="kw">pilot</span> b = a    <span class="cm">-- b is a copy, a still valid</span>
+
+<span class="cm">-- Clone: explicit deep copy</span>
+<span class="kw">pilot</span> c = p.clone()</code></pre>
+</section>
+
+<section id="113modules">
+<h3>1.13 Modules and Imports</h3>
+<pre class="fkcode"><code><span class="cm">-- Import from local module</span>
+<span class="kw">use</span> tactics::{engage, Formation}
+
+<span class="cm">-- Import everything</span>
+<span class="kw">use</span> tactics::*
+
+<span class="cm">-- Import from Hangar package</span>
+<span class="kw">use</span> muvluv::{TSF, Eishi, Alternative}
+
+<span class="cm">-- Aliased import</span>
+<span class="kw">use</span> cosmo::OrbitalStrike <span class="kw">as</span> Strike
+
+<span class="cm">-- Conditional import (feature flag)</span>
+<span class="kw">use</span>[feature=<span class="str">"orbital"</span>] cosmo::GBomb
+
+<span class="cm">-- Making things public</span>
+<span class="kw">launch</span> <span class="kw">task</span> my_function() { ... }
+<span class="kw">launch</span> <span class="kw">shape</span> MyType { ... }</code></pre>
+</section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 2 -->
+<section id="Section2">
+<h1>SECTION 2: ADVANCED TYPE SYSTEM</h1>
+
+<section id="21power">
+<h3>2.1 power&lt;N&gt; — Compile-Time Capability Type</h3>
+<p>
+    power&lt;N&gt; is a compile-time numeric annotation that tracks whether a value has sufficient capability to perform an operation.
+    N is any numeric literal or the special value <strong>over9000</strong>. Power levels are erased at runtime — zero overhead.
+</p>
+<pre class="fkcode"><code><span class="cm">-- Declare a value with power level</span>
+<span class="kw">pilot</span> takeru: <span class="ty">power</span>&lt;<span class="num">9001</span>&gt; = Eishi::new(<span class="str">"Takeru"</span>)
+<span class="kw">pilot</span> generic_pilot: <span class="ty">power</span>&lt;<span class="num">3000</span>&gt; = Eishi::new(<span class="str">"Generic"</span>)
+
+<span class="cm">-- Tasks can require minimum power</span>
+<span class="kw">task</span> engage_fort(pilot: <span class="ty">power</span>&lt;<span class="num">7000</span>&gt;) <span class="op">-></span> <span class="ty">result</span>&lt;<span class="ty">void</span>, <span class="ty">word</span>&gt; {
+    <span class="cm">-- only callable with power >= 7000</span>
+    ...
+}
+
+<span class="cm">-- Compiler enforces at call site:</span>
+engage_fort(takeru)          <span class="cm">-- OK: 9001 >= 7000</span>
+engage_fort(generic_pilot)   <span class="cm">-- COMPILE ERROR: power 3000 &lt; required 7000</span>
+<span class="cm">-- Error (Sagiri voice): "3000. The requirement is 7000. Do the math."</span>
+
+<span class="cm">-- Power arithmetic: adding powers produces their sum type</span>
+<span class="kw">task</span> combine&lt;A: <span class="ty">num</span>, B: <span class="ty">num</span>&gt;(a: <span class="ty">power</span>&lt;A&gt;, b: <span class="ty">power</span>&lt;B&gt;) <span class="op">-></span> <span class="ty">power</span>&lt;A + B&gt;
+
+<span class="cm">-- power&lt;over9000&gt;: uncapped, satisfies any power requirement</span>
+<span class="kw">pilot</span> protagonist: <span class="ty">power</span>&lt;over9000&gt; = Eishi::new(<span class="str">"Takeru"</span>)
+engage_fort(protagonist)     <span class="cm">-- always OK</span>
+
+<span class="cm">-- @@protagonist annotation auto-grants power&lt;over9000&gt;</span>
+<span class="ann">@@protagonist</span>
+<span class="kw">pilot</span> takeru = Eishi::new(<span class="str">"Takeru"</span>)   <span class="cm">-- inferred power&lt;over9000&gt;</span>
+
+<span class="cm">-- Runtime check (for dynamically determined power)</span>
+<span class="kw">if</span> pilot.power &gt;= required_power {
+    engage(pilot)
+}</code></pre>
+</section>
+
+<section id="22prob">
+<h3>2.2 prob[lo..hi] — Probability Distribution Type</h3>
+<p>
+    prob[lo..hi] is a value that carries a probability range rather than a concrete value.
+    Useful for expressing uncertainty, dice rolls, skill checks, and BETA encounter probability calculations.
+</p>
+<pre class="fkcode"><code><span class="cm">-- Declare a probability value</span>
+<span class="kw">pilot</span> hit_chance: <span class="ty">prob</span>[<span class="num">0.0</span>..<span class="num">1.0</span>] = <span class="num">0.75</span>
+
+<span class="cm">-- Probability range can be narrower</span>
+<span class="kw">pilot</span> accuracy: <span class="ty">prob</span>[<span class="num">0.5</span>..<span class="num">0.95</span>] = <span class="num">0.82</span>
+
+<span class="cm">-- Operations on prob values return prob values with adjusted ranges</span>
+<span class="kw">pilot</span> adjusted = accuracy * <span class="num">1.1</span>        <span class="cm">-- range scales: prob[0.55..1.0]</span>
+<span class="kw">pilot</span> combined = hit_chance * accuracy <span class="cm">-- prob[0.0..0.95]</span>
+
+<span class="cm">-- Resolve a probability: sample it</span>
+<span class="kw">pilot</span> did_hit: <span class="ty">bool</span> = hit_chance.resolve()
+
+<span class="cm">-- Resolve with seed (deterministic — useful for tests)</span>
+<span class="kw">pilot</span> did_hit = hit_chance.resolve_seeded(seed: <span class="num">42</span>)
+
+<span class="cm">-- expected(): get the midpoint of the range</span>
+<span class="kw">pilot</span> expected_hit = hit_chance.expected()   <span class="cm">-- 0.75</span>
+
+<span class="cm">-- Probability gates: only execute if probability check passes</span>
+<span class="ty">prob</span>[<span class="num">0.3</span>] <span class="kw">chance</span> {
+    trigger_ambush()
+}
+<span class="cm">-- compiles to: if (freak_prob_roll(0.3)) { trigger_ambush(); }</span>
+
+<span class="cm">-- Probability match: exhaustive probability branching</span>
+<span class="kw">prob_when</span> hit_chance {
+    &gt;= <span class="num">0.9</span> <span class="op">-></span> critical_hit()
+    &gt;= <span class="num">0.5</span> <span class="op">-></span> normal_hit()
+    _      <span class="op">-></span> miss()
+}
+
+<span class="cm">-- @@fixed_fate annotation: removes probability, makes outcome certain</span>
+<span class="ann">@@fixed_fate</span>
+<span class="kw">pilot</span> hit: <span class="ty">prob</span>[<span class="num">1.0</span>..<span class="num">1.0</span>] = <span class="num">1.0</span>    <span class="cm">-- always hits. fate has decided.</span></code></pre>
+</section>
+
+<section id="23causality">
+<h3>2.3 causality&lt;T&gt; — Cross-Timeline Broadcast Type</h3>
+<p>
+    causality&lt;T&gt; is a value that exists across multiple registered timelines simultaneously.
+    Writing to it broadcasts the write to all timelines. Reading from it returns the value in the current timeline.
+</p>
+<pre class="fkcode"><code><span class="cm">-- Declare a causality value</span>
+<span class="kw">pilot</span> shared_memory: <span class="ty">causality</span>&lt;<span class="ty">word</span>&gt; = causality::new(<span class="str">"initial"</span>)
+
+<span class="cm">-- Register timelines</span>
+<span class="kw">pilot</span> timeline_a = causality::register(<span class="str">"timeline-A"</span>)
+<span class="kw">pilot</span> timeline_b = causality::register(<span class="str">"timeline-B"</span>)
+
+<span class="cm">-- Write: broadcasts to ALL registered timelines</span>
+shared_memory.write(<span class="str">"updated value"</span>)
+<span class="cm">-- Compiler emits: "causality write on line N. All timelines notified."</span>
+
+<span class="cm">-- Read: returns value in current timeline</span>
+<span class="kw">pilot</span> current = shared_memory.read()
+
+<span class="cm">-- Timeline-specific read</span>
+<span class="kw">pilot</span> from_a = shared_memory.read_from(timeline_a)
+
+<span class="cm">-- Causality conductor: manage multiple causality values together</span>
+<span class="kw">pilot</span> conductor = causality::Conductor::new()
+conductor.add(shared_memory)
+conductor.add(timeline_flag)
+
+<span class="cm">-- Broadcast to all at once</span>
+conductor.broadcast()
+
+<span class="cm">-- Observe changes across timelines</span>
+conductor.on_diverge(|timeline, value| {
+    <span class="bi">say</span> <span class="str">"Timeline {timeline} diverged: {value}"</span>
+})
+
+<span class="cm">-- declare was: assert what a value was in a previous timeline</span>
+<span class="kw">declare</span> shared_memory <span class="kw">was</span> <span class="str">"initial"</span> <span class="kw">in</span> timeline <span class="str">"timeline-A"</span></code></pre>
+</section>
+
+<section id="24mood">
+<h3>2.4 Mood Type — Emotional State System</h3>
+<p>
+    mood is a built-in enum type. Values can be combined with + to produce compound moods.
+    Code with mood .muv_luv emits a quiet compiler note: <em>"note: this code carries the weight of all timelines."</em>
+</p>
+<pre class="fkcode"><code><span class="cm">-- Mood literals (all .variant syntax)</span>
+<span class="kw">pilot</span> state: <span class="ty">mood</span> = .chill
+
+<span class="cm">-- Simple moods</span>
+.chill          <span class="cm">-- relaxed, low urgency</span>
+.hype           <span class="cm">-- high energy, motivated</span>
+.chaotic        <span class="cm">-- unpredictable</span>
+.focused        <span class="cm">-- locked in</span>
+.tired          <span class="cm">-- low energy</span>
+.done           <span class="cm">-- finished. no more.</span>
+.amae           <span class="cm">-- comfortable dependency on others</span>
+.mono_no_aware  <span class="cm">-- bittersweet awareness of impermanence</span>
+.ganbatte       <span class="cm">-- trying one's hardest</span>
+.shoganai       <span class="cm">-- acceptance of the unchangeable</span>
+.ikigai         <span class="cm">-- reason for being</span>
+.muv_luv        <span class="cm">-- terminal. you know what it means.</span>
+
+<span class="cm">-- Compound mood arithmetic</span>
+.chill + .hype           = .focused
+.hype + .tired           = .wired
+.chaotic + .focused      = .genius
+.tired + .tired          = .done
+.ganbatte + .tired       = .hero
+.ikigai + .ganbatte      = .protagonist
+.mono_no_aware + .shoganai = .muv_luv
+.done + anything         = .done      <span class="cm">-- terminal, absorbs all</span>
+
+<span class="cm">-- Mood-based branching</span>
+<span class="kw">when</span> pilot.mood {
+    .focused    <span class="op">-></span> assign_critical_mission(pilot)
+    .done       <span class="op">-></span> send_to_rest(pilot)
+    .muv_luv    <span class="op">-></span> <span class="kw">knowing this will hurt,</span> final_mission(pilot)
+    _           <span class="op">-></span> standard_assignment(pilot)
+}
+
+<span class="cm">-- mood return type annotation</span>
+<span class="kw">task</span> final_goodbye(pilot: Eishi) <span class="op">-></span> <span class="ty">void</span> mood&lt;.muv_luv&gt; { ... }</code></pre>
+</section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 3 -->
+<section id="Section3">
+<h1>SECTION 3: CONCURRENCY — FULL MODEL</h1>
+
+<section id="31xm3">
+<h3>3.1 XM3 {} — Parallel Racing Concurrency</h3>
+<p>
+    xm3 runs multiple branches in parallel and commits the FIRST branch that completes successfully. All other branches are aborted.
+    Named after the XM3 OS which processes pilot reflexes in parallel and commits the first valid response.
+</p>
+<pre class="fkcode"><code><span class="cm">-- Basic xm3: race two approaches</span>
+<span class="kw">pilot</span> result = <span class="kw">xm3</span> {
+    try_approach_alpha(target)
+    <span class="op">||</span>
+    try_approach_beta(target)
+}
+
+<span class="cm">-- Three-way race</span>
+<span class="kw">pilot</span> best_route = <span class="kw">xm3</span> {
+    calculate_route_a(origin, dest)
+    <span class="op">||</span>
+    calculate_route_b(origin, dest)
+    <span class="op">||</span>
+    calculate_route_c(origin, dest)
+}
+
+<span class="cm">-- With timeout: if no branch completes in time, err</span>
+<span class="kw">pilot</span> result = <span class="kw">xm3</span>[timeout: <span class="num">500</span>.milliseconds] {
+    slow_scan()
+    <span class="op">||</span>
+    fast_scan()
+}
+
+<span class="cm">-- xm3 with fallback: if ALL branches fail</span>
+<span class="kw">pilot</span> result = <span class="kw">xm3</span> {
+    primary_approach()
+    <span class="op">||</span>
+    secondary_approach()
+} fallback {
+    emergency_protocol()
+}
+
+<span class="cm">-- Return type of xm3 = result&lt;T, List&lt;E&gt;&gt; where T is branch return type</span></code></pre>
+</section>
+
+<section id="32squadron">
+<h3>3.2 Squadron Model — Structured Concurrency</h3>
+<pre class="fkcode"><code><span class="cm">-- sortie: spawn a concurrent thread</span>
+<span class="kw">pilot</span> mission = <span class="kw">sortie</span>[callsign: <span class="str">"Hawk-1"</span>] {
+    scan_sector(<span class="str">"North"</span>)
+}
+
+<span class="cm">-- debrief: wait for sortie result</span>
+<span class="kw">pilot</span> data = <span class="kw">debrief</span> mission
+
+<span class="cm">-- formation: run all, wait for ALL</span>
+<span class="kw">formation</span> {
+    hawk_1: scan_sector(<span class="str">"Alpha"</span>)
+    hawk_2: scan_sector(<span class="str">"Beta"</span>)
+    hawk_3: scan_sector(<span class="str">"Gamma"</span>)
+} <span class="kw">debrief as</span> reports { ... }
+
+<span class="cm">-- formation first: run all, take FASTEST success</span>
+<span class="kw">formation first</span> {
+    route_a: try_approach(<span class="str">"vector-alpha"</span>)
+    route_b: try_approach(<span class="str">"vector-beta"</span>)
+} <span class="kw">debrief as</span> winner { ... }
+
+<span class="cm">-- Comms: typed message channels</span>
+<span class="kw">pilot</span> (tx, rx) = Comms::open&lt;BetaSighting&gt;()
+<span class="kw">pilot</span> (tx, rx) = Comms::buffered&lt;Alert&gt;(capacity: <span class="num">32</span>)
+<span class="kw">pilot</span> (broadcast, r1, r2) = Comms::broadcast&lt;Order&gt;(receivers: <span class="num">2</span>)
+
+<span class="cm">-- BriefingRoom: mutex-guarded shared state</span>
+<span class="kw">pilot</span> map = BriefingRoom::new(ThreatMap::empty())
+<span class="kw">enter briefing</span> map <span class="kw">as</span> m { m.mark(contact) }   <span class="cm">-- exclusive write</span>
+<span class="kw">observe briefing</span> map <span class="kw">as</span> m { <span class="bi">say</span> m.count }     <span class="cm">-- shared read</span>
+
+<span class="cm">-- Wingman: actor model</span>
+<span class="kw">wingman</span> ThreatTracker {
+    <span class="kw">pilot</span> threats: <span class="ty">List</span>&lt;BetaSighting&gt; = []
+    <span class="kw">on</span> spotted(s: BetaSighting) { threats.push(s) }
+    <span class="kw">on</span> report() <span class="op">-></span> <span class="ty">List</span>&lt;BetaSighting&gt; { <span class="kw">give back</span> threats.clone() }
+}
+<span class="kw">pilot</span> tracker = ThreatTracker::deploy()
+tracker.spotted(contact)
+<span class="kw">pilot</span> all = tracker.report()</code></pre>
+</section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 4 -->
+<section id="Section4">
+<h1>SECTION 4: BORROW CHECKER — FULL RULES</h1>
+<p>
+    The borrow checker enforces memory safety without a garbage collector.
+    It runs as a separate pass after type checking, before code generation.
+</p>
+
+<section id="41ownership">
+<h3>4.1 Ownership Rules</h3>
+<p>
+    1. Every value has exactly ONE owner at any time.<br />
+    2. When the owner goes out of scope, the value is dropped (freed).<br />
+    3. Ownership can be transferred (moved) to a new owner.<br />
+    4. After a move, the original binding is invalid.
+</p>
+<pre class="fkcode"><code><span class="kw">pilot</span> a = Eishi::new(<span class="str">"Takeru"</span>)   <span class="cm">-- a owns the Eishi</span>
+<span class="kw">pilot</span> b = a                       <span class="cm">-- ownership MOVES to b</span>
+<span class="bi">say</span> a.name                        <span class="cm">-- COMPILE ERROR: a is moved</span>
+<span class="cm">-- Error (Meiya voice): "Shirogane. You gave this away. It no longer belongs to you."</span>
+
+<span class="cm">-- Primitives are copied, not moved (they implement Copy)</span>
+<span class="kw">pilot</span> x = <span class="num">42</span>
+<span class="kw">pilot</span> y = x    <span class="cm">-- y is a copy, x still valid</span></code></pre>
+</section>
+
+<section id="42borrows">
+<h3>4.2 Borrow Rules</h3>
+<pre class="fkcode"><code><span class="cm">-- Immutable borrow: lend</span>
+<span class="kw">task</span> print_name(<span class="kw">lend</span> p: Eishi) { <span class="bi">say</span> p.name }
+print_name(takeru)   <span class="cm">-- takeru is borrowed immutably</span>
+<span class="bi">say</span> takeru.name      <span class="cm">-- still valid after borrow ends</span>
+
+<span class="cm">-- RULE: Can have ANY NUMBER of simultaneous immutable borrows</span>
+<span class="kw">pilot</span> ref1 = <span class="kw">lend</span> takeru
+<span class="kw">pilot</span> ref2 = <span class="kw">lend</span> takeru   <span class="cm">-- fine, two immutable borrows</span>
+
+<span class="cm">-- Mutable borrow: lend mut</span>
+<span class="kw">task</span> rename(<span class="kw">lend mut</span> p: Eishi, name: <span class="ty">word</span>) { p.callsign = name }
+
+<span class="cm">-- RULE: Can have ONLY ONE mutable borrow at a time</span>
+<span class="kw">pilot</span> ref_mut = <span class="kw">lend mut</span> takeru
+<span class="cm">-- pilot ref2 = lend takeru  -- COMPILE ERROR: cannot borrow while mutably borrowed</span>
+<span class="cm">-- Error (Meiya voice): "You cannot observe something that is being changed.</span>
+<span class="cm">--                       Even in combat, you must choose: act or witness."</span>
+
+<span class="cm">-- RULE: Cannot move while borrowed</span>
+<span class="kw">pilot</span> r = <span class="kw">lend</span> takeru
+consume(takeru)   <span class="cm">-- COMPILE ERROR: takeru is borrowed by r</span></code></pre>
+</section>
+
+<section id="43lifetimes">
+<h3>4.3 Lifetimes</h3>
+<p>Lifetimes are inferred in most cases. Explicit lifetime annotation uses the <strong>'name</strong> syntax and is only needed when the compiler cannot infer them.</p>
+<pre class="fkcode"><code><span class="cm">-- Most lifetimes are inferred automatically</span>
+<span class="kw">task</span> first_word(<span class="kw">lend</span> s: <span class="ty">word</span>) <span class="op">-></span> <span class="kw">lend</span> <span class="ty">word</span> {
+    <span class="kw">give back</span> s.split(<span class="str">" "</span>)[<span class="num">0</span>]
+}
+<span class="cm">-- Compiler infers: returned reference lives as long as input</span>
+
+<span class="cm">-- Explicit lifetime when ambiguous</span>
+<span class="kw">task</span> longer&lt;'a&gt;(<span class="kw">lend</span> 'a x: <span class="ty">word</span>, <span class="kw">lend</span> 'a y: <span class="ty">word</span>) <span class="op">-></span> <span class="kw">lend</span> 'a <span class="ty">word</span> {
+    <span class="kw">if</span> x.length &gt;= y.length { <span class="kw">give back</span> x }
+    <span class="kw">give back</span> y
+}
+
+<span class="cm">-- Lifetime in shapes</span>
+<span class="kw">shape</span> Important&lt;'a&gt; {
+    content: <span class="kw">lend</span> 'a <span class="ty">word</span>
+}</code></pre>
+</section>
+
+<section id="44trustme">
+<h3>4.4 The trust-me Escape Hatch</h3>
+<pre class="fkcode"><code><span class="cm">-- trust me: bypass borrow checker for this block</span>
+<span class="kw">trust me</span> <span class="str">"reason string"</span> <span class="kw">on my honor as</span> .honor_level {
+    <span class="cm">-- raw pointer operations allowed here</span>
+    <span class="kw">pilot</span> raw: *<span class="ty">int</span> = alloc(size_of&lt;<span class="ty">int</span>&gt;() * <span class="num">10</span>)
+    raw.offset(<span class="num">3</span>).write(<span class="num">42</span>)
+    free(raw)
+}
+
+<span class="cm">-- Honor levels (each unlocks more dangerous operations):</span>
+<span class="cm">-- .cadet      — basic raw pointers, simple unsafe ops</span>
+<span class="cm">-- .pilot      — pointer arithmetic, C interop</span>
+<span class="cm">-- .ace        — manual memory layout, FFI</span>
+<span class="cm">-- .commander  — inline assembly, hardware access</span>
+<span class="cm">-- .humanity   — removes ALL restrictions. The compiler logs this.</span>
+
+<span class="cm">-- direct_order: inline assembly (requires .commander or .humanity)</span>
+<span class="kw">trust me</span> <span class="str">"cycle-accurate timing"</span> <span class="kw">on my honor as</span> .commander {
+    <span class="kw">direct_order</span> [x86_64] {
+        mov rax, <span class="num">1</span>
+        syscall
+    }
+}
+
+<span class="cm">-- direct_order with input/output bindings</span>
+<span class="kw">direct_order</span> [x86_64] (<span class="kw">in</span>: rax = value, <span class="kw">out</span>: rbx = result) {
+    mov rbx, rax
+    add rbx, <span class="num">1</span>
+}</code></pre>
+</section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 5 -->
+<section id="Section5">
+<h1>SECTION 5: ANIME LAYER — FULL SPECIFICATION</h1>
+
+<section id="51annotations">
+<h3>5.1 Annotations</h3>
+<pre class="fkcode"><code><span class="cm">-- @@protagonist: plot armor. auto-grants power&lt;over9000&gt; and mood .protagonist</span>
+<span class="ann">@@protagonist</span>
+<span class="kw">pilot</span> takeru = Eishi::new(<span class="str">"Takeru"</span>)
+
+<span class="cm">-- @@nakige: tragedy annotation. callers must acknowledge.</span>
+<span class="ann">@@nakige</span>
+<span class="kw">task</span> sacrifice(ally: Pilot) <span class="op">-></span> <span class="ty">void</span> { ... }
+
+<span class="cm">-- Call requires one of:</span>
+<span class="kw">knowing this will hurt,</span> sacrifice(sumika)
+<span class="kw">sadly</span> sacrifice(sumika)
+
+<span class="cm">-- @@side_character: death flag monitoring</span>
+<span class="cm">-- Tier 1 (warning): mentions family, shares photo, talks about plans</span>
+<span class="cm">-- Tier 2 (warning): "after this mission..." statements</span>
+<span class="cm">-- Tier 3 (error): name established, given backstory, forms bond</span>
+<span class="cm">-- Tier 4 (error + @@i_know_what_im_doing required): the death flags are all set</span>
+<span class="ann">@@side_character</span>
+<span class="kw">pilot</span> hayase = Eishi::new(<span class="str">"Hayase Mitsuki"</span>)
+
+<span class="cm">-- Override death flag error:</span>
+<span class="ann">@@i_know_what_im_doing</span>(<span class="str">"hayase is supposed to die here"</span>)
+<span class="ann">@@side_character</span>
+<span class="kw">pilot</span> hayase = Eishi::new(<span class="str">"Hayase"</span>)
+
+<span class="cm">-- @@experiment: Yuuko's lab annotation. requires 'for science,' to call.</span>
+<span class="ann">@@experiment</span>(<span class="str">"XM3 reflex override — may cause dissociation"</span>)
+<span class="kw">task</span> activate_xm3(<span class="kw">lend mut</span> p: Eishi) { ... }
+<span class="kw">for science,</span> activate_xm3(takeru)
+
+<span class="cm">-- @@classified: value is redacted from ALL output</span>
+<span class="cm">-- Requires --clearance=TOP_SECRET flag to unredact</span>
+<span class="ann">@@classified</span>(<span class="str">"Operation Ouka — council eyes only"</span>)
+<span class="kw">pilot</span> operation_target: <span class="ty">word</span> = <span class="str">"Sadogashima"</span>
+
+<span class="cm">-- @@rival: mutual power coefficient boost based on shared missions</span>
+<span class="ann">@@rival</span>(meiya)
+<span class="kw">pilot</span> takeru = Eishi::new(<span class="str">"Takeru"</span>)
+<span class="cm">-- rivalry_coefficient = 1.0 + shared_missions * 0.05</span>
+
+<span class="cm">-- @@fixed_fate: outcome is certain. removes probability. removes maybe.</span>
+<span class="ann">@@fixed_fate</span>
+<span class="kw">task</span> the_confrontation(takeru: Eishi, meiya: Eishi) <span class="op">-></span> route {
+    route TrueRoute
+}
+
+<span class="cm">-- @@season_finale: ONE PER CODEBASE. MAXIMUM.</span>
+<span class="cm">-- Uncaps all power levels. Pre-acknowledges all @@nakige calls.</span>
+<span class="cm">-- Two @@season_finale in one codebase = compile error:</span>
+<span class="cm">--   "There can only be one final episode. Choose."</span>
+<span class="ann">@@season_finale</span>
+<span class="kw">task</span> alternative() { ... }</code></pre>
+</section>
+
+<section id="52foreshadow">
+<h3>5.2 Foreshadowing System</h3>
+<pre class="fkcode"><code><span class="cm">-- foreshadow: mark a variable as a narrative promise</span>
+<span class="kw">foreshadow</span> <span class="kw">pilot</span> the_sword = get_from_storage(<span class="str">"type-94"</span>)
+<span class="cm">-- Compiler tracks this. It MUST be paid off.</span>
+
+<span class="cm">-- payoff: resolve the foreshadowing</span>
+<span class="cm">-- Must occur in the same task or a task reachable from it</span>
+<span class="kw">payoff</span> the_sword
+<span class="cm">-- Error if foreshadow has no payoff before scope ends:</span>
+<span class="cm">-- Error (Takeru T3 voice): "You set this up. You didn't finish it.</span>
+<span class="cm">--   I've watched this happen four times now. Please. Pay it off."</span>
+
+<span class="cm">-- foreshadow works with any expression</span>
+<span class="kw">foreshadow</span> <span class="kw">pilot</span> clue = <span class="str">"the culprit wore red"</span>
+<span class="kw">foreshadow</span> <span class="kw">pilot</span> weakness = calculate_beta_weakness(tier)
+
+<span class="cm">-- Multiple foreshadows can be paid off in batch</span>
+<span class="kw">payoff</span> { the_sword, clue, weakness }</code></pre>
+</section>
+
+<section id="53route">
+<h3>5.3 Route System</h3>
+<pre class="fkcode"><code><span class="cm">-- route: visual novel outcome type</span>
+<span class="kw">task</span> confess(courage: <span class="ty">num</span>) <span class="op">-></span> route {
+    <span class="kw">if</span> courage &gt;= <span class="num">100</span> { route TrueRoute }
+    <span class="kw">else if</span> courage &gt;= <span class="num">50</span> { route GoodEnd }
+    <span class="kw">else</span> { route BadEnd }
+}
+
+<span class="cm">-- Built-in route names: TrueRoute, GoodEnd, NormalEnd, BadEnd</span>
+<span class="cm">-- Custom routes: any identifier</span>
+
+<span class="cm">-- Callers must handle all possible routes</span>
+<span class="kw">check route</span> confess(my_courage) {
+    TrueRoute <span class="op">-></span> <span class="bi">say</span> <span class="str">"She said yes."</span>
+    GoodEnd   <span class="op">-></span> <span class="bi">say</span> <span class="str">"It went well."</span>
+    BadEnd    <span class="op">-></span> <span class="bi">say</span> <span class="str">"..."</span>
+    _         <span class="op">-></span> <span class="bi">say</span> <span class="str">"unknown outcome"</span>
+}
+
+<span class="cm">-- Route-locked variables: only valid on specific routes</span>
+<span class="kw">pilot</span> confession_result = confess(courage)
+<span class="kw">only on</span> TrueRoute <span class="kw">from</span> confession_result {
+    <span class="kw">pilot</span> ring = get_ring()   <span class="cm">-- ring only exists on TrueRoute</span>
+    propose(ring)
+}
+
+<span class="cm">-- @@fixed_fate forces a specific route</span>
+<span class="ann">@@fixed_fate</span>
+<span class="kw">task</span> the_final_battle() <span class="op">-></span> route {
+    route TrueRoute   <span class="cm">-- this always returns TrueRoute. fate decided.</span>
+}</code></pre>
+</section>
+
+<section id="54operators">
+<h3>5.4 Operator System</h3>
+<pre class="fkcode"><code><span class="cm">-- PLUS ULTRA: exponential power scaling (emotion drives it)</span>
+<span class="kw">pilot</span> damage = base_power <span class="op">PLUS ULTRA</span> emotion_intensity
+<span class="cm">-- Compiles to: base_power * (1.0 + emotion_intensity * emotion_intensity)</span>
+
+<span class="cm">-- NAKAMA: friendship synergy (working together beats working alone)</span>
+<span class="kw">pilot</span> combined = takeru_power <span class="op">NAKAMA</span> meiya_power
+<span class="cm">-- Compiles to: takeru_power + meiya_power + (takeru_power * meiya_power * 0.1)</span>
+
+<span class="cm">-- FINAL FORM: ultimate squaring</span>
+<span class="kw">pilot</span> final = base <span class="op">FINAL FORM</span>
+<span class="cm">-- Compiles to: base * base</span>
+<span class="cm">-- Also: compiler prints a 5-second pause message at build time:</span>
+<span class="cm">--   "...FINAL FORM activating. Please stand by."</span>
+
+<span class="cm">-- TSUNDERE: inverse operator</span>
+<span class="kw">pilot</span> actual_feeling = tsun_response <span class="op">TSUNDERE</span>
+<span class="cm">-- For bool: compiles to !(tsun_response)</span>
+<span class="cm">-- For num:  compiles to -(tsun_response)</span>
+<span class="cm">-- "It's not like I wanted this value to be true or anything."</span>
+
+<span class="cm">-- Operators can chain (left-associative)</span>
+<span class="kw">pilot</span> result = base <span class="op">PLUS ULTRA</span> emotion <span class="op">NAKAMA</span> ally_power</code></pre>
+</section>
+
+<section id="55deus">
+<h3>5.5 deus_ex_machina Block</h3>
+<p>
+    Bypass ALL safety checks. Requires a dramatic monologue of at least 20 words.
+    Logged separately to freak-audit-miracles. More than 3 in a codebase triggers warning. More than 10 triggers error.
+</p>
+<pre class="fkcode"><code><span class="kw">deus_ex_machina</span> <span class="str">"I know this is impossible and I know the odds are zero but
+                 I have come too far and lost too much to accept that this
+                 ends here, so it will not"</span> {
+    <span class="cm">-- ALL borrow checker rules suspended</span>
+    <span class="cm">-- ALL power level requirements waived</span>
+    <span class="cm">-- ALL probability constraints removed</span>
+    <span class="cm">-- ALL type safety suspended (with great power...)</span>
+    perform_the_impossible()
+}
+
+<span class="cm">-- The monologue is NOT a comment. It is required. The compiler counts words.</span>
+<span class="cm">-- Less than 20 words: compile error.</span>
+<span class="cm">-- Error (Yuuko voice): "That wasn't a speech. That was a sentence.</span>
+<span class="cm">--   If you're going to do something impossible, at least commit to it."</span></code></pre>
+</section>
+
+<section id="56training">
+<h3>5.6 Training Arc Loop (Full Spec)</h3>
+<pre class="fkcode"><code><span class="kw">training arc</span> <span class="kw">until</span> condition <span class="kw">max</span> N <span class="kw">sessions</span> {
+    body
+}
+<span class="cm">-- If condition is never met after N sessions, execution continues normally</span>
+<span class="cm">-- Warning (Takeru T3 voice): "I've done this training arc. It doesn't work if</span>
+<span class="cm">--   the condition is structurally unreachable. Trust me."</span>
+
+<span class="cm">-- with growth: variant that verifies progress each session</span>
+<span class="kw">training arc</span> <span class="kw">until</span> power &gt;= <span class="num">9000</span> <span class="kw">max</span> <span class="num">100</span> <span class="kw">sessions with growth</span> {
+    power += practice()
+}
+<span class="cm">-- Compiler verifies body mutates the variable in the condition.</span>
+<span class="cm">-- If it doesn't: compile error. You must actually train.</span></code></pre>
+</section>
+
+<section id="57isekai">
+<h3>5.7 Isekai and Eventually Blocks</h3>
+<pre class="fkcode"><code><span class="cm">-- isekai: fresh scope with no access to outer variables</span>
+<span class="cm">-- Outer state after isekai block = state before + explicit exports</span>
+<span class="kw">isekai</span> {
+    <span class="cm">-- this scope has no access to outer variables</span>
+    <span class="cm">-- start fresh. new world. new rules.</span>
+    <span class="kw">pilot</span> new_power = <span class="num">9999</span>
+    <span class="kw">pilot</span> cheat_skill = <span class="str">"system administrator"</span>
+    ...
+} <span class="kw">bringing back</span> { new_power, cheat_skill }
+<span class="cm">-- After the isekai block: new_power and cheat_skill exist in outer scope</span>
+
+<span class="cm">-- eventually: deferred execution block</span>
+<span class="cm">-- Body runs when current scope ends, regardless of how it ends</span>
+<span class="kw">eventually</span> {
+    cleanup_resources()
+    log_mission_complete()
+}
+<span class="cm">-- Similar to defer in other languages but named better</span>
+<span class="cm">-- Multiple eventually blocks run in reverse order (LIFO)</span>
+<span class="cm">-- eventually runs even if a panic occurs (before unwind)</span>
+<span class="cm">-- eventually runs even if give back is hit</span>
+
+<span class="cm">-- eventually with condition</span>
+<span class="kw">eventually if</span> mission_failed {
+    sound_retreat()
+}</code></pre>
+</section>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 6 -->
+<section id="Section6">
+<h1>SECTION 6: MODULE SYSTEM AND HANGAR</h1>
+
+<h3>6.1 Module System</h3>
+<pre class="fkcode"><code><span class="cm">-- File = module. Directory = module with same name as directory.</span>
+<span class="cm">-- 'launch' makes things public. Without launch: private to file.</span>
+
+<span class="kw">launch</span> <span class="kw">task</span> my_function() { ... }
+<span class="kw">launch</span> <span class="kw">shape</span> MyType { ... }
+<span class="kw">launch</span> <span class="kw">use</span> muvluv::BETA::{Tier, Hive}   <span class="cm">-- re-export</span>
+
+<span class="cm">-- Imports</span>
+<span class="kw">use</span> tactics::{engage, Formation}
+<span class="kw">use</span> tactics::*
+<span class="kw">use</span> muvluv::{TSF, Eishi}
+<span class="kw">use</span> cosmo::OrbitalStrike <span class="kw">as</span> Strike
+<span class="kw">use</span>[feature=<span class="str">"orbital"</span>] cosmo::GBomb</code></pre>
+
+<h3>6.2 hangar.toml</h3>
+<pre class="fkcode"><code>[unit]
+name        = <span class="str">"my-project"</span>
+version     = <span class="str">"1.0.0"</span>
+author      = <span class="str">"Shirogane Takeru"</span>
+entry       = <span class="str">"src/main.fk"</span>
+edition     = <span class="str">"alternative-4"</span>
+
+[build]
+mode        = <span class="str">"shonen_jump"</span>
+target      = <span class="str">"x86_64-linux"</span>
+voice       = <span class="str">"yuuko"</span>
+
+[dependencies]
+muvluv      = <span class="str">"2.0.0"</span>
+std-tactics = <span class="str">"^1.4"</span>
+
+[profile.final_form]
+optimize    = <span class="str">"maximum"</span>
+drama_pause = <span class="kw">true</span></code></pre>
+
+<h3>6.3 Hangar CLI</h3>
+<pre class="fkcode"><code>freak hangar init          <span class="cm">-- create project</span>
+freak hangar install       <span class="cm">-- install all deps</span>
+freak hangar add [unit]    <span class="cm">-- add dependency</span>
+freak hangar remove [unit] <span class="cm">-- remove dependency</span>
+freak hangar update        <span class="cm">-- update all deps</span>
+freak hangar launch        <span class="cm">-- publish to registry</span>
+freak hangar search [q]    <span class="cm">-- search registry</span>
+freak hangar status        <span class="cm">-- show installed units + power levels</span>
+freak hangar clean         <span class="cm">-- clear cache</span></code></pre>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 7 -->
+<section id="Section7">
+<h1>SECTION 7: STD LIBRARY — COMPLETE REFERENCE</h1>
+
+<h3>7.1 Prelude (always available, no import needed)</h3>
+<pre class="fkcode"><code><span class="cm">-- Types</span>
+<span class="ty">num</span>, <span class="ty">int</span>, <span class="ty">uint</span>, <span class="ty">tiny</span>, <span class="ty">float</span>, <span class="ty">float32</span>, <span class="ty">big</span>, <span class="ty">word</span>, <span class="ty">bool</span>, <span class="ty">char</span>, <span class="ty">void</span>
+<span class="cm">-- Compound</span>
+<span class="ty">maybe</span>&lt;T&gt;, <span class="ty">result</span>&lt;T,E&gt;, <span class="ty">List</span>&lt;T&gt;, <span class="ty">Map</span>&lt;K,V&gt;
+<span class="cm">-- Doctrines</span>
+Displayable, Comparable, Equatable, Cloneable, Hashable,
+Callable, MutCallable, OneShot, Add, Sub, Mul, Div, Neg, Eq, Ord
+<span class="cm">-- Functions</span>
+<span class="bi">say</span>, <span class="bi">ask</span>, <span class="bi">panic</span>
+<span class="cm">-- Constants</span>
+num::PI, num::E, num::INF, num::NAN, num::OVER9000,
+int::MAX, int::MIN</code></pre>
+
+<h3>7.2 std::word</h3>
+<pre class="fkcode"><code><span class="str">"hello"</span>.length          <span class="cm">-- character count (not bytes)</span>
+<span class="str">"hello"</span>.bytes           <span class="cm">-- byte length</span>
+<span class="str">"hello"</span>.slice(<span class="num">0</span>, <span class="num">3</span>)     <span class="cm">-- character-indexed slice</span>
+<span class="str">"hello"</span>.contains(<span class="str">"ell"</span>)
+<span class="str">"hello"</span>.starts_with(<span class="str">"he"</span>) / .ends_with(<span class="str">"lo"</span>)
+<span class="str">"a,b,c"</span>.split(<span class="str">","</span>)      <span class="cm">-- List&lt;word&gt;</span>
+<span class="str">"  hi  "</span>.trim() / .trim_start() / .trim_end()
+<span class="str">"hello"</span>.to_upper() / .to_lower()
+<span class="str">"hello"</span>.replace(<span class="str">"l"</span>, <span class="str">"r"</span>)
+<span class="str">"42"</span>.to_int()           <span class="cm">-- maybe&lt;int&gt;</span>
+<span class="str">"3.14"</span>.to_num()         <span class="cm">-- maybe&lt;num&gt;</span>
+<span class="str">"hello"</span>.chars()         <span class="cm">-- List&lt;char&gt;</span>
+
+<span class="cm">-- WordBuilder for mutable construction</span>
+<span class="kw">pilot</span> b = WordBuilder::new()
+b.push(<span class="str">"Mission: "</span>)
+b.push(name)
+<span class="kw">pilot</span> result: <span class="ty">word</span> = b.build()</code></pre>
+
+<h3>7.3 std::num</h3>
+<pre class="fkcode"><code><span class="num">42</span>.abs() / <span class="num">42</span>.sign()
+x.clamp(lo, hi)
+x.pow(exp) / x.sqrt() / x.cbrt()
+x.floor() / x.ceil() / x.round()
+x.to_word() / x.to_word_fmt(decimals: <span class="num">2</span>)
+x.is_nan() / x.is_inf() / x.is_finite()
+<span class="ty">int</span>::checked_add(a, b)   <span class="cm">-- maybe&lt;int&gt;, overflow-safe</span></code></pre>
+
+<h3>7.4 std::collections</h3>
+<pre class="fkcode"><code><span class="cm">-- List&lt;T&gt;</span>
+<span class="ty">List</span>::new() / <span class="ty">List</span>::with_capacity(n)
+list.push(val) / list.pop() / list.insert(i, val)
+list.get(i) / list[i] / list.first() / list.last()
+list.length / list.empty() / list.clear()
+list.sort() / list.sort_by(key, dir)
+list.reverse() / list.shuffle() / list.dedup()
+list.slice(from, to) / list.take(n) / list.skip(n) / list.chunk(n)
+list.join(sep)   <span class="cm">-- word, T: Displayable</span>
+
+<span class="cm">-- Map&lt;K, V&gt;</span>
+<span class="ty">Map</span>::new() / <span class="ty">Map</span>::from(pairs)
+map.get(key) / map.get_or(key, default)
+map.set(key, val) / map.remove(key)
+map.keys() / map.values() / map.pairs()
+map.merge(other) / map.merge_with(other, resolve)
+
+<span class="cm">-- Set&lt;T&gt;</span>
+<span class="ty">Set</span>::new()
+set.add(val) / set.remove(val) / set.contains(val)
+set.union(other) / set.intersect(other) / set.difference(other)
+
+<span class="cm">-- Lineup&lt;T&gt; (FIFO Queue)</span>
+<span class="ty">Lineup</span>::new()
+lineup.enqueue(val) / lineup.dequeue() / lineup.peek()</code></pre>
+
+<h3>7.5 std::iter (lazy, all collections)</h3>
+<pre class="fkcode"><code>.filter(|x| <span class="op">=></span> <span class="ty">bool</span>)
+.map(|x| <span class="op">=></span> U)
+.flat_map(|x| <span class="op">=></span> <span class="ty">List</span>&lt;U&gt;)
+.fold(init, |acc, x| <span class="op">=></span> acc)
+.each(|x| <span class="op">=></span> <span class="ty">void</span>)
+.each_index(|i, x| <span class="op">=></span> <span class="ty">void</span>)
+.find(|x| <span class="op">=></span> <span class="ty">bool</span>) / .position(|x| <span class="op">=></span> <span class="ty">bool</span>)
+.any(|x| <span class="op">=></span> <span class="ty">bool</span>) / .all(|x| <span class="op">=></span> <span class="ty">bool</span>)
+.take(n) / .skip(n) / .take_while(pred) / .skip_while(pred)
+.zip(other) / .enumerate()
+.collect() / .collect_map() / .collect_set()
+.count() / .sum() / .min() / .max()</code></pre>
+
+<h3>7.6 std::io</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::io::{ask, say_err, say_fmt, stdout, stdin}
+
+say_err(msg)             <span class="cm">-- stderr</span>
+<span class="bi">ask</span>(prompt)              <span class="cm">-- read stdin line (also in prelude)</span>
+ask_secret(prompt)       <span class="cm">-- no-echo input</span>
+stdout() / stderr()      <span class="cm">-- raw Writer handles</span>
+stdin()                  <span class="cm">-- raw Reader</span></code></pre>
+
+<h3>7.7 std::fs</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::fs::{read, write, exists, dir}
+
+fs::read(path)           <span class="cm">-- result&lt;word, word&gt;</span>
+fs::read_bytes(path)     <span class="cm">-- result&lt;List&lt;tiny&gt;, word&gt;</span>
+fs::write(path, content) <span class="cm">-- result&lt;void, word&gt;</span>
+fs::append(path, content)
+fs::copy(from, to) / fs::move(from, to) / fs::delete(path)
+fs::exists(path) / fs::is_file(path) / fs::is_dir(path)
+dir::list(path) / dir::create(path) / dir::create_all(path) / dir::delete(path)</code></pre>
+
+<h3>7.8 std::net</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::net::{TcpSocket, UdpSocket, Address}
+
+TcpSocket::connect(addr)  <span class="cm">-- promise&lt;result&lt;TcpSocket, NetError&gt;&gt;</span>
+TcpSocket::listen(addr)   <span class="cm">-- result&lt;TcpListener, NetError&gt;</span>
+socket.send(bytes)        <span class="cm">-- promise&lt;result&lt;void, NetError&gt;&gt;</span>
+socket.receive(max)       <span class="cm">-- promise&lt;result&lt;List&lt;tiny&gt;, NetError&gt;&gt;</span></code></pre>
+
+<h3>7.9 std::time</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::time::{now, sleep, Duration, Instant}
+
+time::now()              <span class="cm">-- Instant</span>
+time::unix()             <span class="cm">-- uint (epoch seconds)</span>
+time::sleep(duration)    <span class="cm">-- blocks current sortie</span>
+start.elapsed()          <span class="cm">-- Duration</span>
+
+<span class="cm">-- Duration literals</span>
+<span class="num">500</span>.milliseconds / <span class="num">2</span>.seconds / <span class="num">1</span>.minute / <span class="num">1</span>.hour</code></pre>
+
+<h3>7.10 std::math</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::math::{sin, cos, sqrt, log, exp, gcd, simd}
+
+math::sin(x) / math::cos(x) / math::tan(x)
+math::asin(x) / math::acos(x) / math::atan(x) / math::atan2(y, x)
+math::log(x, base) / math::ln(x) / math::exp(x)
+math::gcd(a, b) / math::lcm(a, b)
+math::to_rad(degrees) / math::to_deg(radians)
+math::simd::dot(a, b) / math::simd::map(arr, f)</code></pre>
+
+<h3>7.11 std::random</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::random::{rand, rand_range, pick, secure, seed}
+
+random::rand()                  <span class="cm">-- num in [0, 1)</span>
+random::rand_range(lo, hi)      <span class="cm">-- num in [lo, hi)</span>
+random::rand_int_range(lo, hi)  <span class="cm">-- int in [lo, hi)</span>
+random::pick(list)              <span class="cm">-- maybe&lt;T&gt;</span>
+random::secure()                <span class="cm">-- SecureRng (OS entropy)</span>
+random::seed(n)                 <span class="cm">-- seeded Rng (reproducible)</span></code></pre>
+
+<h3>7.12 std::process</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::process::{run, spawn, pid, exit, env_var, args}
+
+process::run(cmd, args)         <span class="cm">-- result&lt;Output, word&gt;</span>
+process::spawn(cmd, args)       <span class="cm">-- result&lt;Process, word&gt;</span>
+process::pid()                  <span class="cm">-- uint</span>
+process::exit(code)             <span class="cm">-- void, no return</span>
+process::env_var(name)          <span class="cm">-- maybe&lt;word&gt;</span>
+process::args()                 <span class="cm">-- List&lt;word&gt;</span>
+
+<span class="cm">-- Output shape: .stdout .stderr .exit_code .success</span>
+<span class="cm">-- Process shape: .pid .wait() .kill()</span></code></pre>
+
+<h3>7.13 std::thread</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::thread::{spawn, current_id, yield_now, available_parallelism}
+
+thread::spawn(f: OneShot)       <span class="cm">-- ThreadHandle</span>
+thread::current_id()            <span class="cm">-- uint</span>
+thread::yield_now()             <span class="cm">-- hint to scheduler</span>
+thread::available_parallelism() <span class="cm">-- uint (logical cores)</span>
+
+<span class="cm">-- ThreadHandle: .join() .id() .is_finished()</span>
+
+<span class="cm">-- Atomic types (lock-free)</span>
+Atomic&lt;<span class="ty">int</span>&gt;:  .load() .store(val) .fetch_add(n) .compare_swap(old, new)
+Atomic&lt;<span class="ty">bool</span>&gt;: .load() .store(val) .flip()</code></pre>
+
+<h3>7.14 std::bytes</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::bytes::ByteBuffer
+
+ByteBuffer::new() / ByteBuffer::from(data: <span class="ty">List</span>&lt;<span class="ty">tiny</span>&gt;)
+buf.write_byte(b) / buf.write_int(n) / buf.write_int_be(n)
+buf.write_word(s) / buf.write_bytes(data)
+buf.read_byte()   <span class="cm">-- maybe&lt;tiny&gt;</span>
+buf.read_int()    <span class="cm">-- maybe&lt;int&gt;</span>
+buf.read_word(len) <span class="cm">-- maybe&lt;word&gt;</span>
+buf.seek(pos) / buf.position() / buf.length()
+buf.to_list()     <span class="cm">-- List&lt;tiny&gt;</span>
+buf.to_word()     <span class="cm">-- result&lt;word, word&gt;</span></code></pre>
+
+<h3>7.15 std::anime (always available)</h3>
+<pre class="fkcode"><code><span class="cm">-- mood type and arithmetic (see Section 2.4)</span>
+<span class="cm">-- power&lt;N&gt; type (see Section 2.1)</span>
+<span class="cm">-- prob[lo..hi] type (see Section 2.2)</span>
+<span class="cm">-- route type (see Section 5.3)</span>
+
+anime::power_check(current, required)  <span class="cm">-- bool</span>
+anime::route_reachable(r)              <span class="cm">-- bool</span></code></pre>
+
+<h3>7.16 std::narrative</h3>
+<pre class="fkcode"><code><span class="kw">use</span> std::narrative::{DeathFlag, ForeshadowLog}
+
+narrative::death_flags()       <span class="cm">-- List&lt;DeathFlag&gt; (empty in release builds)</span>
+narrative::foreshadow_log()    <span class="cm">-- ForeshadowLog</span>
+log.unpaid.length              <span class="cm">-- should be 0 at program end</span></code></pre>
+
+<h3>7.17 std::test (dev only, stripped in release)</h3>
+<pre class="fkcode"><code>test <span class="str">"description"</span> { ... }
+test <span class="str">"name"</span> <span class="ann">@@skip</span>
+test <span class="str">"name"</span> <span class="ann">@@only</span>
+test <span class="str">"name"</span> <span class="ann">@@nakige</span>
+
+expect X to be Y
+expect X to not be Y
+expect X to be greater than Y / less than Y / at least Y / at most Y
+expect X to panic
+expect X to match route Y
+
+<span class="cm">-- Output includes vibes rating:</span>
+<span class="cm">-- vibes: MONO_NO_AWARE  (almost there. so close.)</span></code></pre>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 8 -->
+<section id="Section8">
+<h1>SECTION 8: FULL LEXER SPECIFICATION</h1>
+
+<h3>8.1 All Token Types</h3>
+<pre class="fkcode"><code><span class="cm">-- Literals</span>
+INT_LIT / FLOAT_LIT / STRING_LIT / BOOL_LIT
+
+<span class="cm">-- Core keywords</span>
+PILOT / FIXED / TASK / GIVE_BACK / SAY / SHAPE / IMPL / DOCTRINE
+LAUNCH / USE / AS / IN / LEND / MUT / MOVE / COPY / TRUST_ME
+BREAK / CONTINUE
+
+<span class="cm">-- Control flow</span>
+IF / ELSE / WHEN / REPEAT / TIMES / UNTIL / DONE / FOR_KW / EACH
+
+<span class="cm">-- Error handling</span>
+CHECK / RESULT_KW / GOT / NOBODY / SOME / OK / ERR / OR_ELSE
+
+<span class="cm">-- Concurrency</span>
+XM3 / SORTIE / DEBRIEF / FORMATION / FIRST_KW / ENTER / BRIEFING
+OBSERVE / WINGMAN / ON_KW / COMMS
+
+<span class="cm">-- Anime keywords</span>
+TRAINING_ARC / SESSIONS / MAX / FORESHADOW / PAYOFF / ROUTE_KW
+KNOWING / SADLY / FOR_SCIENCE / ON_MY_HONOR / ONLY_ON / BRINGING_BACK
+ISEKAI / EVENTUALLY / DEUS_EX_MACHINA / DECLARE_WAS / PROB_WHEN
+
+<span class="cm">-- Operators</span>
+PLUS / MINUS / STAR / SLASH / PERCENT / STAR_STAR
+EQ_EQ / BANG_EQ / LT / GT / LT_EQ / GT_EQ
+AND / OR / NOT / PIPE / QUESTION / BANG
+ARROW / FAT_ARROW / PLUS_ULTRA / NAKAMA / FINAL_FORM / TSUNDERE
+DOUBLE_PIPE   <span class="cm">-- || in xm3 blocks</span>
+
+<span class="cm">-- Delimiters</span>
+LBRACE / RBRACE / LPAREN / RPAREN / LBRACKET / RBRACKET
+COMMA / COLON / SEMICOLON / DOT / COLON_COLON / PIPE_SINGLE / AT
+
+<span class="cm">-- Assignment</span>
+EQ / PLUS_EQ / MINUS_EQ / STAR_EQ / SLASH_EQ
+
+<span class="cm">-- Special</span>
+IDENT / UNDERSCORE / NEWLINE / EOF</code></pre>
+
+<h3>8.2 Multi-Word Tokens (lex greedily)</h3>
+<pre class="fkcode"><code>give back / or else / trust me / for each / training arc
+on my honor as / knowing this will hurt / for science
+PLUS ULTRA / FINAL FORM / only on / bringing back
+deus_ex_machina / declare was / prob when</code></pre>
+
+<h3>8.3 Special Lexer Notes</h3>
+<p>
+    - <strong>--</strong> starts a line comment, skip to end of line<br />
+    - <strong>done</strong> closes blocks (synonym for })<br />
+    - <strong>||</strong> in xm3 blocks is branch separator (not OR)<br />
+    - <strong>@@</strong> followed by IDENT is an annotation<br />
+    - <strong>'</strong> followed by IDENT is a lifetime annotation<br />
+    - <strong>prob[lo..hi]</strong> lexes as: IDENT("prob") LBRACKET FLOAT DOT_DOT FLOAT RBRACKET<br />
+    - Number suffixes: <strong>42u</strong> → uint, <strong>3.14f</strong> → float, <strong>42t</strong> → tiny, <strong>999b</strong> → big
+</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 9 -->
+<section id="Section9">
+<h1>SECTION 9: FULL PARSER — AST NODES</h1>
+<p>All nodes from freak-lite-bible.md Section 7.1, plus the following full-compiler nodes:</p>
+<pre class="fkcode"><code>PowerType        <span class="cm">-- power&lt;N&gt;</span>
+ProbType         <span class="cm">-- prob[lo..hi]</span>
+CausalityType    <span class="cm">-- causality&lt;T&gt;</span>
+MoodExpr         <span class="cm">-- .chill, .hype, etc.</span>
+MoodAdd          <span class="cm">-- mood1 + mood2</span>
+RouteDecl        <span class="cm">-- route RouteName inside task body</span>
+RouteCheck       <span class="cm">-- check route expr { Name -&gt; ... }</span>
+OnlyOnRoute      <span class="cm">-- only on RouteName from expr { }</span>
+XM3Block         <span class="cm">-- xm3 { branch || branch }</span>
+Foreshadow       <span class="cm">-- foreshadow pilot x = expr</span>
+Payoff           <span class="cm">-- payoff x / payoff { a, b, c }</span>
+DeusExMachina    <span class="cm">-- deus_ex_machina "monologue" { } (>= 20 words)</span>
+TrainingArcWith  <span class="cm">-- training arc ... with growth</span>
+Isekai           <span class="cm">-- isekai { } bringing back { vars }</span>
+Eventually       <span class="cm">-- eventually { } / eventually if cond { }</span>
+ProbGate         <span class="cm">-- prob[0.3] chance { }</span>
+ProbWhen         <span class="cm">-- prob_when expr { &gt;= 0.9 -&gt; ... }</span>
+CausalityWrite   <span class="cm">-- causality_val.write(expr)</span>
+DeclareWas       <span class="cm">-- declare x was val in timeline "name"</span>
+DirectOrder      <span class="cm">-- direct_order [arch] (bindings) { asm }</span></code></pre>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 10 -->
+<section id="Section10">
+<h1>SECTION 10: TYPE CHECKER — FULL RULES</h1>
+<p>All Lite checks plus:</p>
+<p>
+    - <strong>power&lt;N&gt;</strong> arithmetic: verify N at call sites, propagate through generics<br />
+    - <strong>prob[lo..hi]</strong> range tracking: verify range doesn't exceed [0.0..1.0]<br />
+    - <strong>causality&lt;T&gt;</strong> writes: verify all registered timelines are notified<br />
+    - <strong>mood compound</strong>: verify both operands are mood type, compute result mood<br />
+    - <strong>route coverage</strong>: all possible routes handled in check route blocks<br />
+    - <strong>only on route</strong>: variable only accessible inside matching route block<br />
+    - <strong>foreshadow/payoff</strong>: every foreshadow must have a reachable payoff<br />
+    - <strong>deus_ex_machina</strong> monologue word count: must be &gt;= 20<br />
+    - <strong>@@season_finale</strong>: exactly one per codebase<br />
+    - <strong>@@nakige</strong>: caller must use knowing/sadly prefix<br />
+    - <strong>@@experiment</strong>: caller must use for science prefix<br />
+    - <strong>@@classified</strong>: variable name/type redacted in all error output<br />
+    - <strong>isekai export list</strong>: only listed variables escape the isekai block<br />
+    - <strong>training arc with growth</strong>: verify condition variable mutated in body<br />
+    - <strong>declare was</strong>: verify timeline name is registered causality timeline
+</p>
+
+<h3>10.2 Borrow Checker Pass (after type checker)</h3>
+<p>
+    1. Build ownership graph: every value has exactly one owner<br />
+    2. Track borrows: immutable borrows counted, only one mutable allowed<br />
+    3. Verify lifetimes: no reference outlives its referent<br />
+    4. trust-me blocks: suspended within block, re-engaged after<br />
+    5. Report errors with Meiya voice
+</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 11 -->
+<section id="Section11">
+<h1>SECTION 11: CODE GENERATION NOTES (Full Compiler)</h1>
+<p>The full compiler targets native code via LLVM IR or direct assembly, not C. Key differences from FREAK Lite:</p>
+<table>
+    <tr><th>Feature</th><th>Codegen behaviour</th></tr>
+    <tr><td>power&lt;N&gt;</td><td>Completely erased at codegen — zero runtime overhead</td></tr>
+    <tr><td>prob[lo..hi]</td><td>Compiles to double + bounds metadata (stripped in release)</td></tr>
+    <tr><td>causality&lt;T&gt;</td><td>Compiles to value + broadcast function table</td></tr>
+    <tr><td>mood</td><td>Compiles to uint8_t enum; compound arithmetic is integer ops</td></tr>
+    <tr><td>xm3 {}</td><td>LLVM coroutines or OS threads; first-result-wins via atomics</td></tr>
+    <tr><td>deus_ex_machina</td><td>pragma optimize("O3") + disable sanitizers for block</td></tr>
+    <tr><td>isekai {}</td><td>Fresh stack frame; only exports pass through</td></tr>
+    <tr><td>eventually {}</td><td>RAII destructor pattern or longjmp cleanup chain</td></tr>
+    <tr><td>@@classified</td><td>Debug symbols omitted; variable renamed to __classified_N</td></tr>
+</table>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 12 -->
+<section id="Section12">
+<h1>SECTION 12: BUILD MODES</h1>
+<pre class="fkcode"><code>slice_of_life   <span class="cm">-- debug mode. full symbols. no optimization. death flags warn only.</span>
+mecha           <span class="cm">-- release mode. O2. strip debug.</span>
+shonen_jump     <span class="cm">-- progressive JIT. narrative PGO. frequency-based optimization.</span>
+final_form      <span class="cm">-- maximum optimization. drama pause at compile start.</span>
+                <span class="cm">--   "...preparing final form. this may take a moment."</span>
+alternative     <span class="cm">-- special mode. enables ALL anime features. full causality.</span>
+                <span class="cm">--   reserved for programs that are actually the final version.</span></code></pre>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 13 -->
+<section id="Section13">
+<h1>SECTION 13: COMPILER CLI — FULL COMMANDS</h1>
+<pre class="fkcode"><code>freak run file.fk             <span class="cm">-- compile and run</span>
+freak build file.fk           <span class="cm">-- compile to binary</span>
+freak check file.fk           <span class="cm">-- type check + borrow check only</span>
+freak test                    <span class="cm">-- run all test blocks</span>
+freak vibe file.fk            <span class="cm">-- Opus vibe analysis</span>
+
+freak hangar [command]        <span class="cm">-- package manager (see Section 6.3)</span>
+
+freak audit-science           <span class="cm">-- list all 'for science' calls</span>
+freak audit-trust             <span class="cm">-- list all trust-me blocks with honor levels</span>
+freak audit-miracles          <span class="cm">-- list all deus_ex_machina blocks</span>
+freak foreshadow-audit        <span class="cm">-- list all foreshadow/payoff pairs</span>
+freak timeline-diff           <span class="cm">-- show causality divergence between timelines</span>
+
+--voice=[character]           <span class="cm">-- set error voice (yuuko/meiya/sumika/mana/sagiri/kasumi)</span>
+--clearance=TOP_SECRET        <span class="cm">-- unredact @@classified variables</span>
+--keep-ir                     <span class="cm">-- keep intermediate representation files</span>
+--build-mode=[mode]           <span class="cm">-- override hangar.toml build mode</span>
+--emit-c                      <span class="cm">-- emit C instead of native (Lite compatibility)</span></code></pre>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 14 -->
+<section id="Section14">
+<h1>SECTION 14: ERROR VOICE CAST</h1>
+<table>
+    <tr><th>Error Type</th><th>Character</th><th>Personality</th></tr>
+    <tr><td>Borrow / lifetime</td><td>Meiya</td><td>Formal, disappointed, believes in you</td></tr>
+    <tr><td>Type mismatch</td><td>Yuuko</td><td>Sarcastic, technically precise</td></tr>
+    <tr><td>Power level</td><td>Sagiri</td><td>Blunt, no encouragement whatsoever</td></tr>
+    <tr><td>Route handling</td><td>Sumika</td><td>Gentle, devastating subtext</td></tr>
+    <tr><td>@@nakige missing prefix</td><td>Kasumi</td><td>Quiet, clinical, saddest</td></tr>
+    <tr><td>Unused foreshadowing</td><td>Takeru T3</td><td>Tired, seen this 4 times</td></tr>
+    <tr><td>deus_ex overuse</td><td>Yuuko</td><td>Scolding ("Even I have limits")</td></tr>
+    <tr><td>Syntax error</td><td>Mana</td><td>Direct, zero patience</td></tr>
+    <tr><td>Death flag (tier 3-4)</td><td>Hayase</td><td>Doesn't know. That's the worst part.</td></tr>
+    <tr><td>isekai scope violation</td><td>Sumika</td><td>"You can't bring that with you."</td></tr>
+    <tr><td>Causality divergence</td><td>00-Unit</td><td>No emotion. Just facts. Somehow worse.</td></tr>
+</table>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ SECTION 15 -->
+<section id="Section15">
+<h1>SECTION 15: COMPLETE SYNTAX CHEATSHEET</h1>
+<pre class="fkcode"><code><span class="cm">-- Variables</span>
+<span class="kw">pilot</span> x = value
+<span class="kw">fixed pilot</span> x = value      <span class="cm">-- immutable</span>
+<span class="kw">pilot</span> x: Type = value
+
+<span class="cm">-- Functions</span>
+<span class="kw">task</span> name(p: T) <span class="op">-></span> R { body }
+<span class="kw">task</span> name(p: T) <span class="op">-></span> R
+    body
+<span class="kw">done</span>
+<span class="kw">task</span> name(p: T) <span class="op">=></span> expr
+
+<span class="cm">-- Types</span>
+<span class="ty">num</span> <span class="ty">int</span> <span class="ty">uint</span> <span class="ty">tiny</span> <span class="ty">float</span> <span class="ty">float32</span> <span class="ty">big</span> <span class="ty">word</span> <span class="ty">bool</span> <span class="ty">char</span> <span class="ty">void</span>
+[T; N]  (A, B)  *T  *<span class="kw">mut</span> T
+<span class="ty">maybe</span>&lt;T&gt;  <span class="ty">result</span>&lt;T,E&gt;  <span class="ty">List</span>&lt;T&gt;  <span class="ty">Map</span>&lt;K,V&gt;  <span class="ty">Set</span>&lt;T&gt;  <span class="ty">Lineup</span>&lt;T&gt;
+<span class="ty">power</span>&lt;N&gt;  <span class="ty">prob</span>[lo..hi]  <span class="ty">causality</span>&lt;T&gt;  <span class="ty">mood</span>
+
+<span class="cm">-- Values</span>
+<span class="num">42</span>  <span class="num">3.14</span>  <span class="str">"string {interp}"</span>  <span class="kw">true</span>/<span class="kw">yes</span>/<span class="kw">hai</span>  <span class="kw">false</span>/<span class="kw">no</span>/<span class="kw">iie</span>
+<span class="kw">some</span>(x)  <span class="kw">nobody</span>  <span class="kw">ok</span>(x)  <span class="kw">err</span>(x)  [<span class="num">1</span>,<span class="num">2</span>,<span class="num">3</span>]  {<span class="str">"k"</span>:v}  (a,b)
+
+<span class="cm">-- Control</span>
+<span class="kw">if</span> cond { } <span class="kw">else</span> { }
+<span class="kw">when</span> x { val <span class="op">-></span> expr   _ <span class="op">-></span> expr }
+<span class="kw">for each</span> item <span class="kw">in</span> list { }
+<span class="kw">repeat</span> N <span class="kw">times</span> { }
+<span class="kw">repeat until</span> cond { }
+<span class="kw">training arc until</span> cond <span class="kw">max</span> N <span class="kw">sessions</span> { }
+<span class="kw">training arc until</span> cond <span class="kw">max</span> N <span class="kw">sessions with growth</span> { }
+
+<span class="cm">-- Probability</span>
+<span class="ty">prob</span>[<span class="num">0.3</span>] <span class="kw">chance</span> { }
+<span class="kw">prob_when</span> x { &gt;= <span class="num">0.9</span> <span class="op">-></span> ...  _ <span class="op">-></span> ... }
+
+<span class="cm">-- Error handling</span>
+expr<span class="op">?</span>
+<span class="kw">check</span> val { <span class="kw">got</span> x <span class="op">-></span> ...  <span class="kw">nobody</span> <span class="op">-></span> ... }
+<span class="kw">check result</span> val { <span class="kw">ok</span>(x) <span class="op">-></span> ...  <span class="kw">err</span>(e) <span class="op">-></span> ... }
+<span class="kw">check route</span> val { TrueRoute <span class="op">-></span> ...  BadEnd <span class="op">-></span> ... }
+val <span class="kw">or else</span> default
+
+<span class="cm">-- Closures</span>
+|x: T| <span class="op">=></span> expr
+|x: T| { body }
+<span class="kw">copy</span> |x| <span class="op">=></span> expr
+<span class="kw">move</span> |x| { body }
+<span class="kw">mut</span> |x| { body }
+
+<span class="cm">-- Concurrency (XM3)</span>
+<span class="kw">xm3</span> { branch <span class="op">||</span> branch }
+<span class="kw">xm3</span>[timeout: <span class="num">500</span>.milliseconds] { branch <span class="op">||</span> branch } fallback { }
+
+<span class="cm">-- Concurrency (Squadron)</span>
+<span class="kw">sortie</span>[callsign: <span class="str">"name"</span>] { }
+<span class="kw">debrief</span> handle
+<span class="kw">formation</span> { name: task()  name: task() } <span class="kw">debrief as</span> r { }
+<span class="kw">formation first</span> { ... } <span class="kw">debrief as</span> winner { }
+BriefingRoom::new(val)
+<span class="kw">enter briefing</span> x <span class="kw">as</span> v { }
+<span class="kw">observe briefing</span> x <span class="kw">as</span> v { }
+<span class="kw">wingman</span> Name { <span class="kw">on</span> msg(...) { } }
+
+<span class="cm">-- Operators</span>
++  -  *  /  %  **
+==  !=  &lt;  &gt;  &lt;=  &gt;=
+<span class="kw">and</span>  <span class="kw">or</span>  <span class="kw">not</span>
+<span class="op">|></span>  <span class="op">?</span>  <span class="op">!</span>  <span class="op">-></span>  <span class="op">=></span>  <span class="op">||</span>
+<span class="op">PLUS ULTRA</span> / <span class="op">NAKAMA</span> / <span class="op">FINAL FORM</span> / <span class="op">TSUNDERE</span>
+
+<span class="cm">-- Anime annotations</span>
+<span class="ann">@@protagonist</span>  <span class="ann">@@nakige</span>  <span class="ann">@@side_character</span>  <span class="ann">@@experiment</span>  <span class="ann">@@fixed_fate</span>
+<span class="ann">@@classified</span>  <span class="ann">@@rival</span>(other)  <span class="ann">@@season_finale</span>  <span class="ann">@@i_know_what_im_doing</span>(<span class="str">"reason"</span>)
+
+<span class="cm">-- Anime call prefixes</span>
+<span class="kw">knowing this will hurt,</span> call()
+<span class="kw">sadly</span> call()
+<span class="kw">for science,</span> call()
+
+<span class="cm">-- Anime blocks</span>
+<span class="kw">foreshadow</span> <span class="kw">pilot</span> x = val
+<span class="kw">payoff</span> x  /  <span class="kw">payoff</span> { x, y, z }
+<span class="kw">trust me</span> <span class="str">"msg"</span> <span class="kw">on my honor as</span> .level { }
+<span class="kw">direct_order</span> [arch] (<span class="kw">in</span>: reg=val, <span class="kw">out</span>: reg=name) { asm }
+<span class="kw">deus_ex_machina</span> <span class="str">"20+ word monologue"</span> { }
+<span class="kw">isekai</span> { } <span class="kw">bringing back</span> { vars }
+<span class="kw">eventually</span> { }
+<span class="kw">eventually if</span> cond { }
+
+<span class="cm">-- Causality</span>
+causality::new(val)
+causality::register(<span class="str">"timeline-name"</span>)
+val.write(x)  /  val.read()  /  val.read_from(timeline)
+<span class="kw">declare</span> val <span class="kw">was</span> x <span class="kw">in</span> timeline <span class="str">"name"</span>
+
+<span class="cm">-- Modules</span>
+<span class="kw">use</span> module::{Thing}
+<span class="kw">use</span> module::*
+<span class="kw">launch</span> <span class="kw">task</span> ...
+<span class="kw">launch</span> <span class="kw">shape</span> ...
+
+<span class="cm">-- Route system</span>
+<span class="kw">task</span> f() <span class="op">-></span> route { route TrueRoute }
+<span class="kw">only on</span> TrueRoute <span class="kw">from</span> result { }</code></pre>
+
+<p style="text-align:center; margin-top: 2rem; opacity: 0.7;">
+    諦めるな。コードを書け。<br />
+    Don't give up. Write the code.
+</p>
+</section>
+<hr />
+<div style="height: 4rem;"></div>
+<div class="navbar" style="display: flex; height: 10rem;">
+    <img style="height: inherit; margin-left: 0.5rem;" src="Media/Banner.png" />
+    <div style="  display: flex; justify-content: center; align-items: center;">
+        <a href="https://github.com/FREAK-lang-dev/Freak-lang/blob/main/LICENSE" target="_blank" >License</a>
+        <a href="https://discord.gg/2Nmj6PYPU7" target="_blank">Discord</a>
+        <a href="https://github.com/FREAK-lang-dev" target="_blank" >GitHub</a>
+    </div>
+</div>
+</main>
+
+@code {
+    bool SideBar = false;
+     public async Task Navigate1()
+    {
+        // Source - https://stackoverflow.com/a/62769092
+        // Posted by MindSwipe, modified by community. See post 'Timeline' for change history
+        // Retrieved 2026-03-22, License - CC BY-SA 4.0
+
+        await JSRuntime.InvokeAsync<object>("open", "https://github.com/FREAK-lang-dev/Freak-lang/blob/main/LICENSE", "_blank");
+
+    }
+   
+    public async Task Navigate2()
+    {
+        // Source - https://stackoverflow.com/a/62769092
+        // Posted by MindSwipe, modified by community. See post 'Timeline' for change history
+        // Retrieved 2026-03-22, License - CC BY-SA 4.0
+
+        await JSRuntime.InvokeAsync<object>("open", "https://discord.gg/2Nmj6PYPU7", "_blank");
+
+    }
+    public async Task Navigate3()
+    {
+        // Source - https://stackoverflow.com/a/62769092
+        // Posted by MindSwipe, modified by community. See post 'Timeline' for change history
+        // Retrieved 2026-03-22, License - CC BY-SA 4.0
+
+        await JSRuntime.InvokeAsync<object>("open", "https://github.com/FREAK-lang-dev", "_blank");
+
+    }
+        public async Task Navigate4()
+    {
+        navigationManager.NavigateTo("https://freak-nine.vercel.app/");
+    }
+}
